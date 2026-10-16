@@ -2,7 +2,7 @@
 name: "Qloo Agentic"
 rules_url: "https://qloo.devpost.com/"
 submission_url: "https://qloo.devpost.com/"
-deadline: "2026-10-30T23:59:00+01:00"
+deadline: "2026-10-31T03:45:00Z"
 timezone_original: "per Emma roundup 2026-10-02 — dates only; EXACT TIME UNVERIFIED"
 ai_policy: "allowed"
 repo_must_be_public: true
@@ -29,7 +29,7 @@ last_checked: "2026-10-06T12:00:00+01:00"
 AI agents using Qloo's taste and cultural intelligence graph API.
 
 ## Deadline
-2026-10-30T23:59:00+01:00 (WAT) — **TIME UNVERIFIED**, verify on the page.
+2026-10-31T03:45:00Z (= 04:45 WAT; Oct 30 11:45pm EDT) — verified via web 2026-10-16.
 
 ## Eligibility / IP / AI policy
 UNVERIFIED — confirm on the rules page before committing time.

@@ -3,7 +3,7 @@
 Claude Code loads this automatically. Read it fully at the start of every session.
 
 **Pitch:** An AI agent that uses Qloo's taste/cultural-intelligence graph to make genuinely personalized decisions.
-**Deadline:** 2026-10-30T23:59:00+01:00 (source of truth: `RULES.md` frontmatter)
+**Deadline:** 2026-10-31T03:45:00Z (04:45 WAT) (source of truth: `RULES.md` frontmatter)
 **Stack:** web
 **Repo:** github.com/JoshBlazer/qloo-agentic
 
