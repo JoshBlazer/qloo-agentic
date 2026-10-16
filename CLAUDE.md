@@ -23,7 +23,11 @@ Claude Code loads this automatically. Read it fully at the start of every sessio
 - **Scope is sacred.** Don't add features not in `PLAN.md`. If you think something should be added, say so and let the operator decide.
 
 ## Commands
-_(stack commands filled when the build starts)_
+- `npm install` — install deps (Next 14 + React 18 + Tailwind + Vitest).
+- `npm run dev` — dev server on http://localhost:3000 (mock mode unless `QLOO_API_KEY` set).
+- `npm test` — Vitest: agent runs end-to-end against the mock Qloo client.
+- `npm run build` / `npm start` — production build / serve.
+- Live Qloo: `cp .env.example .env.local`, set `QLOO_API_KEY`, restart. `QLOO_USE_MOCK=1` forces fixtures.
 
 ## Authorship
 - Commits are authored solely by the operator (local git config is already set). No `Co-Authored-By` trailers, no AI attribution in commit messages or README.
