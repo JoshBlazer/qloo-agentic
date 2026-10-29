@@ -26,8 +26,11 @@ Tags: `must` · `should` · `cut-first` · `ship`
       (insights uses `type`+`subtype`, affinity at `query.affinity`, tags differ per endpoint,
       description via `short_description`). See docs/QLOO_API.md. Code is live-ready; operator just
       sets `QLOO_API_KEY` in `.env.local` to flip the running app off mock.
-- [ ] M3 (should) Demo polish + deploy (Vercel) + screenshots to submission/.
-- [ ] SHIP (ship) Deploy, fill SUBMISSION.md, pre-flight — run `/ship`. (Operator submits.)
+- [x] M3 (should) **Deployed to Vercel** — https://qloo-agentic.vercel.app (Next.js preset,
+      QLOO_API_KEY server-side). Live Qloo flow verified end-to-end 2026-10-29 ("live Qloo"
+      badge, 3/3 seeds, real affinity-ranked Tokyo itinerary). Screenshot in submission/screenshots/.
+- [~] SHIP (ship) Live demo up + SUBMISSION.md filled. Remaining (operator): make repo PUBLIC,
+      then submit on Devpost before 2026-10-31 03:45Z.
 
 ## Open questions — OPERATOR
 - [~] **Qloo API key** — RECEIVED (hackathon email, hostname `hackathon.api.qloo.com`). Validated

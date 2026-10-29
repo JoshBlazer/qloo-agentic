@@ -37,7 +37,7 @@ integration is live and server-side (the key never reaches the browser).
 
 **Repo URL:** https://github.com/JoshBlazer/qloo-agentic  *(must be PUBLIC before submit — MIT licensed)*
 
-**Demo URL:** ⟨PENDING DEPLOY — Vercel production URL⟩
+**Demo URL:** https://qloo-agentic.vercel.app  *(live; Qloo end-to-end verified 2026-10-29 — "live Qloo" badge, 3/3 seeds resolved, real affinity-ranked Tokyo itinerary)*
 
 **Team:** Solo (Joshua Willie)
 
@@ -50,7 +50,7 @@ integration is live and server-side (the key never reaches the browser).
 ## Pre-flight (against RULES.md)
 - [x] Qloo integration mandatory & load-bearing — YES, `/search` + `/v2/insights`, live-validated 2026-10-19.
 - [x] `npm test` green (7/7) · `npm run build` green.
-- [ ] **Externally-hosted live demo** — deploy to Vercel with `QLOO_API_KEY` set server-side. *(operator)*
+- [x] **Externally-hosted live demo** — https://qloo-agentic.vercel.app (Vercel, Next.js preset, `QLOO_API_KEY` server-side; live Qloo flow verified 2026-10-29).
+- [x] Demo URL recorded above.
 - [ ] **Public repo + OSI license** — make github.com/JoshBlazer/qloo-agentic public (MIT present). *(operator)*
-- [ ] Demo URL pasted above once live.
 - [ ] Submit on Devpost before 2026-10-31 03:45Z (04:45 WAT). *(operator)*
