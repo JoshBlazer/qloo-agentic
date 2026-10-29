@@ -14,15 +14,31 @@ export type EntityTypeUrn =
   | "urn:entity:tv_show"
   | "urn:entity:videogame";
 
-/** A Qloo entity as returned by /search and /v2/insights. */
+/**
+ * A Qloo entity. The two endpoints shape it slightly differently (confirmed live
+ * 2026-10-19), so the fields that differ are all optional and read defensively:
+ *   /search       → `types: ["urn:entity:artist"]`, `properties.short_description`,
+ *                   `properties.image.url`, tags `{name, tag_id, type, value}`.
+ *   /v2/insights  → `type: "urn:entity"` + `subtype: "urn:entity:place"` (no `types[]`),
+ *                   `query.affinity`, `properties.images[].url`, tags `{id, name, type, weight}`.
+ */
 export interface QlooEntity {
   entity_id: string;
   name: string;
-  types: string[];
+  /** Present on /search results (one or more entity URNs). */
+  types?: string[];
+  /** Present on /v2/insights results: generic `urn:entity` + specific `subtype`. */
+  type?: string;
+  subtype?: string;
   /** Free-form on the wire; we read a few known keys defensively. */
   properties?: {
+    /** /search entities carry a blurb here; insights places usually don't. */
+    short_description?: string;
     description?: string;
+    /** /search: single image. */
     image?: { url?: string };
+    /** /v2/insights: image array. */
+    images?: Array<{ url?: string; type?: string }>;
     address?: string;
     [key: string]: unknown;
   };
@@ -33,8 +49,15 @@ export interface QlooEntity {
     affinity?: number;
     [key: string]: unknown;
   };
-  /** Tags attached to the entity (genres, keywords). */
-  tags?: Array<{ id?: string; name?: string; type?: string }>;
+  /** Tags attached to the entity. `/search` uses `tag_id`+`value`; insights uses `id`+`weight`. */
+  tags?: Array<{
+    id?: string;
+    tag_id?: string;
+    name?: string;
+    type?: string;
+    value?: string;
+    weight?: number | null;
+  }>;
 }
 
 /** GET /search response. */
@@ -61,10 +84,8 @@ export interface InsightsParams {
   signalTags?: string[];
   /** Hard filter tags, e.g. a place category urn:tag:category:place:restaurant. */
   filterTags?: string[];
-  /** Lat/lon "40.74,-74.00", a WKT POINT, a locality name via query, or a Qloo ID. */
+  /** Geocodable location text, e.g. "Tokyo, Japan"; sent as filter.location.query. */
   location?: string;
-  /** Search radius in meters (default Qloo 15000, max 800000). */
-  locationRadius?: number;
   /** Page size, Qloo default 20, max 50. */
   take?: number;
   demographics?: {

@@ -10,9 +10,11 @@ import type {
 /**
  * Live Qloo client. Talks to the real API over HTTPS with the operator's key.
  *
- * Base URL defaults to the hackathon host; override with QLOO_API_URL for production
- * (`https://api.qloo.com`). The key is read server-side only — this module must never
- * be imported into a client component.
+ * Base URL defaults to `https://hackathon.api.qloo.com` — the host the event's
+ * `hack_`-prefixed credential authenticates against (confirmed live 2026-10-19; the
+ * production host `api.qloo.com` 401s this key). Override with QLOO_API_URL if needed.
+ * The key is read server-side only — this module must never be imported into a client
+ * component.
  */
 export class HttpQlooClient implements QlooClient {
   readonly mode = "live" as const;
@@ -57,8 +59,7 @@ export class HttpQlooClient implements QlooClient {
     if (params.signalTags?.length)
       q["signal.interests.tags"] = params.signalTags.join(",");
     if (params.filterTags?.length) q["filter.tags"] = params.filterTags.join(",");
-    if (params.location) q["filter.location"] = params.location;
-    if (params.locationRadius) q["filter.location.radius"] = String(params.locationRadius);
+    if (params.location) q["filter.location.query"] = params.location;
     if (params.take) q.take = String(params.take);
     if (params.demographics?.age) q["signal.demographics.age"] = params.demographics.age;
     if (params.demographics?.gender)

@@ -19,13 +19,22 @@ Tags: `must` · `should` · `cut-first` · `ship`
       - [x] README, MIT LICENSE, Qloo-only .env.example, .gitignore.
       - [x] Verified: `npm test` 7/7 green · `npm run build` green · server serves / (200) and
             /api/plan returns a coherent plan (mock) · empty-seed request → 400.
-- [!] M2 (must) **Live Qloo** — wire operator's `QLOO_API_KEY`, validate HttpQlooClient against
-      the live hackathon API, reconcile real response fields, tune facet queries. **BLOCKED on key.**
+- [x] M2 (must) **Live Qloo** — request AND response contract now CONFIRMED LIVE against the
+      event key (2026-10-19). Base URL corrected to `https://hackathon.api.qloo.com` (the earlier
+      `api.qloo.com` was from a different Qloo event's harness and 401s this key); auth `X-Api-Key`;
+      location `filter.location.query`. Reconciled real response shapes in types.ts/planner.ts
+      (insights uses `type`+`subtype`, affinity at `query.affinity`, tags differ per endpoint,
+      description via `short_description`). See docs/QLOO_API.md. Code is live-ready; operator just
+      sets `QLOO_API_KEY` in `.env.local` to flip the running app off mock.
 - [ ] M3 (should) Demo polish + deploy (Vercel) + screenshots to submission/.
 - [ ] SHIP (ship) Deploy, fill SUBMISSION.md, pre-flight — run `/ship`. (Operator submits.)
 
 ## Open questions — OPERATOR
-- [ ] **Qloo API key** — needed to leave mock mode (M2). Set `QLOO_API_KEY` in `.env.local`.
+- [~] **Qloo API key** — RECEIVED (hackathon email, hostname `hackathon.api.qloo.com`). Validated
+      live; integration confirmed (M2 done). To run the app live: `cp .env.example .env.local`,
+      add `QLOO_API_KEY=<your key>`, `npm run dev`. NOTE: the key was pasted into chat despite
+      Qloo's attributable-credential rule — consider regenerating it in the Qloo portal after the
+      event. Keep it out of source control / the browser bundle (it stays server-side already).
 - [ ] **Public hosting choice** — Vercel free tier recommended (one-click, keeps key server-side).
       Operator makes the production deploy and sets the repo public.
 
@@ -33,3 +42,9 @@ Tags: `must` · `should` · `cut-first` · `ship`
 - 2026-10-06 accepted from @_HEISEMMA Oct roundup.
 - 2026-10-16 /check PASS (deadline/prize/eligibility/requirements confirmed).
 - 2026-10-16 M1 built: Wayfare scaffold + keyless agent skeleton; tests + build green.
+- 2026-10-16 M2 request-contract verified via official harness dry-run; fixed base URL,
+  filter.location.query, dropped radius; docs/QLOO_API.md captured. Tests 7/7, build green.
+- 2026-10-19 M2 DONE — live-validated against event key. Corrected base URL back to
+  hackathon.api.qloo.com (api.qloo.com 401s this key; the dry-run was a different event).
+  Reconciled live response shapes (type/subtype, query.affinity, tag_id vs id, short_description).
+  Tests 7/7, build green. Key received but came through chat — flagged for post-event rotation.

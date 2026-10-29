@@ -121,7 +121,7 @@ function toPick(facet: Facet, e: QlooEntity, seedNames: string[]): Pick {
     name: e.name,
     entityId: e.entity_id,
     affinity,
-    description: e.properties?.description ?? "",
+    description: e.properties?.short_description ?? e.properties?.description ?? "",
     address: e.properties?.address,
     tags,
     why: explain(seedNames, tags, affinity),

@@ -12,7 +12,7 @@ const CATEGORY_TO_FACET = new Map<string, string>(
 /**
  * Offline Qloo client backed by fixtures. Honors the same interface as the live client,
  * so swapping between them is invisible to the agent. It infers the city from the
- * `filter.location` lat/lon and the facet from `filter.tags` / `filter.type`, then
+ * `filter.location.query` text and the facet from `filter.tags` / `filter.type`, then
  * returns curated, affinity-ranked entities — enough to run the full agent flow with
  * zero keys.
  */
