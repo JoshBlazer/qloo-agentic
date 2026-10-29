@@ -72,8 +72,12 @@ export default function Home() {
       </div>
 
       <footer className="mt-12 border-t border-white/10 pt-6 text-xs text-white/30">
-        Recommendations and affinity scores are produced by Qloo&apos;s taste graph. Running
-        in mock mode until a Qloo API key is configured.
+        Recommendations and affinity scores are produced by Qloo&apos;s taste graph.
+        {plan
+          ? plan.mode === "live"
+            ? " Running live against the Qloo API."
+            : " Running in mock mode (no Qloo API key configured)."
+          : ""}
       </footer>
     </main>
   );

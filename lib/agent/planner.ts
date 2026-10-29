@@ -108,8 +108,16 @@ function affinityOf(e: QlooEntity): number {
   return e.query?.affinity ?? e.popularity ?? 0;
 }
 
+// Audience/demographic tags (e.g. "35 44", "Loyal") read as noise in a "why" chain;
+// keep the meaningful ones — genres, keywords, amenities, categories, interests.
 function tagNames(e: QlooEntity): string[] {
-  return (e.tags ?? []).map((t) => t.name).filter((n): n is string => Boolean(n));
+  return (e.tags ?? [])
+    .filter((t) => {
+      const type = t.type ?? "";
+      return !type.includes(":audience") && !type.includes(":demographic");
+    })
+    .map((t) => t.name)
+    .filter((n): n is string => Boolean(n));
 }
 
 function toPick(facet: Facet, e: QlooEntity, seedNames: string[]): Pick {
